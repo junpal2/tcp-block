@@ -55,7 +55,7 @@ int GetAddrs(const char* interface, Mac* my_mac, Ip* my_ip){
 	memcpy(macbuf, ifr.ifr_hwaddr.sa_data, 6);
 	*my_mac=Mac(macbuf);
 
-	ret=ioctl(sockfd, SIOCGIFHWADDR, &ifr);
+	ret=ioctl(sockfd, SIOCGIFADDR, &ifr);
 	if(ret<0){
 		printf("ioctl() FAILED\n");
 		close(sockfd);

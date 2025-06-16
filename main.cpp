@@ -74,7 +74,7 @@ uint16_t Checksum(uint16_t* ptr, int len){
 	uint16_t odd=0;
 	
 	while(len>1){
-		sum+=ntohs(*ptr++); //16비트 더하고 다음 16비트로
+		sum+=*ptr++; //16비트 더하고 다음 16비트로
 		len-=2;
 	}
 	if(len==1){ //길이 홀수면 마지막 1바이트 16비트로 바꿔서 더하기
@@ -84,7 +84,7 @@ uint16_t Checksum(uint16_t* ptr, int len){
 	while(sum>>16){
 		sum=(sum&0xFFFF)+(sum>>16);
 	}
-	return htons((uint16_t)~sum);
+	return (uint16_t)~sum;
 }
 
 void trim(char* s) {
